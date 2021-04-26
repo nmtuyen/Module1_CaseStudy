@@ -10,7 +10,7 @@
     let c = document.getElementById('mycanvas');
     let pen = c.getContext('2d');
     pen.rect(20,20,100,200);
-    pen.stroke()
+    pen.stroke();
     pen.closePath();
     let grd = pen.createLinearGradient(0,0,100,0);
     grd.addColorStop(0,"blue");
