@@ -19,8 +19,6 @@ function Tank(name,x,y){
             this.x = 1050
         } else if(this.y > 500){
             this.y = 0;
-
-
         }
     }
     this.move = function (){

@@ -1,13 +1,17 @@
 class Food {
-    constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+    constructor() {
+        this.x = 10 * Math.floor(Math.random() * 50)
+        this.y = 10 * Math.floor(Math.random() * 60)
+        this.size = 10;
+    }
+    draw_food = function (canvas) {
+        let d = canvas.getContext('2d');
+        d.beginPath();
+        d.rect(this.x, this.y, this.size, this.size);
+        d.stroke();
     }
     change_pos = function () {
-        if ( this.snake.x === this.food.x && this.snake.y === this.food.y){
-            this.x = Math.floor(Math.random());
-            this.y = Math.floor(Math.random());
-        }
+
     }
 }
+

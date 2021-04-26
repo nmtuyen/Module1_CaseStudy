@@ -7,27 +7,37 @@
     <script src="snake.js"></script>
 </head>
 <body>
-<canvas id="mycanvas" width="500" height="600" style="border: 1px solid black"></canvas>
+<canvas id="mycanvas" width="500" height="600" style="border: 1px solid #05041a"></canvas>
 <script>
-    let snake = new Snake(50, 50, 'red', 10)
+    let snake = new Snake(50, 50, 'red', 10, 10);
+    let food = new Food();
     let c = document.getElementById('mycanvas')
-    snake.draw(c)
+    food.draw_food(c);
+    snake.draw(c);
     function moveSnake(evt) {
         switch (evt.keyCode) {
             case 37:
                 // alert('trái')
+                if (snake.start === 'right')
+                    break;
                 snake.start = 'left';
                 break;
             case 39:
                 // alert("phải")
+                if (snake.start === 'left')
+                    break;
                 snake.start = 'right';
                 break;
             case 38:
                 // alert("lên")
+                if (snake.start === 'down')
+                    break;
                 snake.start = 'up';
                 break;
             case 40:
                 // alert("xuống")
+                if (snake.start === 'up')
+                    break;
                 snake.start = 'down';
                 break;
         }
@@ -39,7 +49,10 @@
     function runGame() {
         clear();
         snake.move();
+        // snake.eatfood();
         snake.draw(c);
+        food.draw_food(c);
+        snake.update();
     }
     setInterval(runGame,300);
     window.addEventListener('keydown',moveSnake)

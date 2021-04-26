@@ -5,15 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-    <h1 style="position: center">GAME RẮN SĂN MỒI</h1>
-    <p>Nhập tên người chơi</p>
-    <input type="text"/>
-    <p>Hướng dẫn</p>
-    <p>Ấn phím "↑","↓","←","→" để rắn đi lên, xuống, trái, phải</p>
-    <p>Điều khiển rắn ăn quả để cộng điểm</p>
-    <p>Đâm vào chướng ngại vật game sẽ kết thúc</p>
-    <input type="checkbox"/>Tôi đã hiểu<br>
-    <button style="position: center">Start game</button>
-
+    <CENTER><h1 style="position: center">GAME RẮN SĂN MỒI</h1></CENTER>
+    <center>
+        <p>Nhập tên người chơi</p>
+        <input type="text"/>
+        <p>Hướng dẫn</p>
+        <p>Ấn phím "↑","↓","←","→" để rắn đi lên, xuống, trái, phải</p>
+        <p>Điều khiển rắn ăn quả để cộng điểm</p>
+        <p>Đâm vào chướng ngại vật game sẽ kết thúc</p>
+        <input onclick="checkop()" id="check" type="checkbox"/>Tôi đã hiểu<br>
+        <button id="but" disabled onclick="game()" style="position: center">Start game</button>
+    </center>
+    <script>
+        function game() {
+            window.location.href = "main.html";
+        }
+        function checkop() {
+            if (document.getElementById('check').checked === true){
+                document.getElementById('but').disabled = false;
+            }else {
+                document.getElementById('but').disabled = true;
+            }
+        }
+    </script>
 </body>
 </html>
