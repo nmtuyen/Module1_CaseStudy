@@ -7,14 +7,16 @@
     <script src="snake.js"></script>
 </head>
 <body>
+
+<div id="score"><p>Score</p></div>
 <canvas id="mycanvas" width="250" height="300" style="border: 1px solid #05041a"></canvas>
 <canvas id="score_player" width="100" height="300" style="border: 1px solid #05041a"></canvas>
 
 <script>
     let snake = new Snake(50, 50, 'red', 10, 10);
     let food = new Food();
+    let score = 0;
     let c = document.getElementById('mycanvas');
-    let d = document.getElementById('score_player');
     food.draw_food(c);
     snake.draw(c);
     function moveSnake(evt) {
@@ -45,9 +47,17 @@
                 break;
         }
     }
-    function eatfood() {
+    function caculator_score() {
         if (snake.x === food.x && snake.y === food.y)
+            score +=1;
+        pen = c.getContext('2d')
+        pen.font = '25px Arial';
+        pen.fillText(score, 10, 20);
+    }
+    function eatfood() {
+        if (snake.x === food.x && snake.y === food.y){
             snake.legthsnake ++;
+        }
     }
 
     function clear() {
@@ -56,37 +66,22 @@
     }
     function runGame() {
         clear();
+        caculator_score()
         snake.move();
         snake.draw(c);
         food.draw_food(c);
         eatfood();
         if (snake.x === food.x && snake.y === food.y){
+            score++
             food.change_pos();
         }
         snake.check();
         snake.update();
     }
-    // function caculator_score() {
-    //     // if (snake.x === food.x && snake.y === food.y)
-    //         snake.score += 10;
-    // }
-    // function print_score() {
-    //     let pen = d.getContext('2d');
-    //     pen.font = '20px Arial';
-    //     pen.fillText(snake.score,10,50);
-    // }
-    // function clear_score() {
-    //     let ctx = d.getContext('2d');
-    //     ctx.clearRect(0,0, 500, 600);
-    // }
-    // function update_score() {
-    //     print_score();
-    //     clear_score();
-    //     if (snake.x === food.x && snake.y === food.y)
-    //         caculator_score();
-    // }
-    // setInterval(update_score, 100);
-    setInterval(runGame,300);
+
+    // document.getElementById("score").innerHTML = score;
+    setInterval(runGame,500);
+
     window.addEventListener('keydown',moveSnake)
     window.addEventListener('keypress',moveSnake)
     window.addEventListener('keyup',moveSnake)

@@ -10,7 +10,6 @@ class Snake {
         this.speedy = speedy;
         this.body = [];
         this.legthsnake = 3;
-        this.score = 0;
     }
     // eatfood = function () {
     //     if (this.snake.x === this.food.x && this.snake.y === this.food.y){

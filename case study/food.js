@@ -12,8 +12,8 @@ class Food {
         d.stroke();
     }
     change_pos = function () {
-        this.x = 10 * Math.floor(Math.random() * 25)
-        this.y = 10 * Math.floor(Math.random() * 30)
+        this.x = 10 * Math.floor(Math.random() * 25);
+        this.y = 10 * Math.floor(Math.random() * 30);
     }
 }
 
