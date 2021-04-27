@@ -10,13 +10,14 @@ class Snake {
         this.speedy = speedy;
         this.body = [];
         this.legthsnake = 3;
+        this.score = 0;
     }
-    eatfood = function () {
-        if (this.snake.x === this.food.x && this.snake.y === this.food.y){
-            this.legthsnake ++;
-            return true;
-        }return false;
-    }
+    // eatfood = function () {
+    //     if (this.snake.x === this.food.x && this.snake.y === this.food.y){
+    //         this.legthsnake ++;
+    //         return true;
+    //     }return false;
+    // }
     move = function () {
         switch (this.start) {
             case 'left' :
@@ -33,10 +34,23 @@ class Snake {
                 break;
         }
     }
+    check = function () {
+        if (snake.x > 250)
+            snake.x = 0;
+        if (snake.x < 0)
+            snake.x = 250
+        if (snake.y > 300)
+            snake.y = 0;
+        if (snake.y < 0)
+            snake.y = 300
+
+
+    }
     update = function () {
         this.body.unshift({x: this.x, y: this.y})
         if (this.body.length > this.legthsnake){
             this.body.pop();
+            console.log(this.body);
         }
     }
     draw = function (canvas) {

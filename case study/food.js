@@ -1,8 +1,9 @@
 class Food {
     constructor() {
-        this.x = 10 * Math.floor(Math.random() * 50)
-        this.y = 10 * Math.floor(Math.random() * 60)
+        this.x = 0;
+        this.y = 0;
         this.size = 10;
+        this.change_pos()
     }
     draw_food = function (canvas) {
         let d = canvas.getContext('2d');
@@ -11,7 +12,8 @@ class Food {
         d.stroke();
     }
     change_pos = function () {
-
+        this.x = 10 * Math.floor(Math.random() * 25)
+        this.y = 10 * Math.floor(Math.random() * 30)
     }
 }
 

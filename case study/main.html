@@ -7,11 +7,14 @@
     <script src="snake.js"></script>
 </head>
 <body>
-<canvas id="mycanvas" width="500" height="600" style="border: 1px solid #05041a"></canvas>
+<canvas id="mycanvas" width="250" height="300" style="border: 1px solid #05041a"></canvas>
+<canvas id="score_player" width="100" height="300" style="border: 1px solid #05041a"></canvas>
+
 <script>
     let snake = new Snake(50, 50, 'red', 10, 10);
     let food = new Food();
-    let c = document.getElementById('mycanvas')
+    let c = document.getElementById('mycanvas');
+    let d = document.getElementById('score_player');
     food.draw_food(c);
     snake.draw(c);
     function moveSnake(evt) {
@@ -42,18 +45,47 @@
                 break;
         }
     }
+    function eatfood() {
+        if (snake.x === food.x && snake.y === food.y)
+            snake.legthsnake ++;
+    }
+
     function clear() {
         let ctx = c.getContext('2d');
-        ctx.clearRect(0,0,c.width, c.height);
+        ctx.clearRect(0,0, 500, 600);
     }
     function runGame() {
         clear();
         snake.move();
-        // snake.eatfood();
         snake.draw(c);
         food.draw_food(c);
+        eatfood();
+        if (snake.x === food.x && snake.y === food.y){
+            food.change_pos();
+        }
+        snake.check();
         snake.update();
     }
+    // function caculator_score() {
+    //     // if (snake.x === food.x && snake.y === food.y)
+    //         snake.score += 10;
+    // }
+    // function print_score() {
+    //     let pen = d.getContext('2d');
+    //     pen.font = '20px Arial';
+    //     pen.fillText(snake.score,10,50);
+    // }
+    // function clear_score() {
+    //     let ctx = d.getContext('2d');
+    //     ctx.clearRect(0,0, 500, 600);
+    // }
+    // function update_score() {
+    //     print_score();
+    //     clear_score();
+    //     if (snake.x === food.x && snake.y === food.y)
+    //         caculator_score();
+    // }
+    // setInterval(update_score, 100);
     setInterval(runGame,300);
     window.addEventListener('keydown',moveSnake)
     window.addEventListener('keypress',moveSnake)
