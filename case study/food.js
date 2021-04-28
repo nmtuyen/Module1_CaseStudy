@@ -14,6 +14,12 @@ class Food {
     change_pos = function () {
         this.x = 10 * Math.floor(Math.random() * 25);
         this.y = 10 * Math.floor(Math.random() * 30);
+        for ( let i = 0; i < snake.body.length; i++ )
+        if (this.x === snake.body[i].x && this.y === snake.body[i].y){
+            this.x = 10 * Math.floor(Math.random() * 25);
+            this.y = 10 * Math.floor(Math.random() * 30);
+
+        }
     }
 }
 

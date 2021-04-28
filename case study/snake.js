@@ -10,25 +10,28 @@ class Snake {
         this.speedy = speedy;
         this.body = [];
         this.legthsnake = 3;
+        this.image = new Image();
+        this.img = ['head_down','head_up','head_left','head_right'];
+        this.image.src = this.img[3] + '.jpg'
+
     }
-    // eatfood = function () {
-    //     if (this.snake.x === this.food.x && this.snake.y === this.food.y){
-    //         this.legthsnake ++;
-    //         return true;
-    //     }return false;
-    // }
+
     move = function () {
         switch (this.start) {
             case 'left' :
+                this.image.src = this.img[2] + '.jpg'
                 this.x -= this.speedx;
                 break;
             case 'right':
+                this.image.src = this.img[3] + '.jpg'
                 this.x += this.speedx;
                 break;
             case 'up':
+                this.image.src = this.img[1] + '.jpg'
                 this.y -= this.speedy;
                 break;
             case 'down':
+                this.image.src = this.img[0] + '.jpg'
                 this.y += this.speedy;
                 break;
         }
@@ -49,16 +52,17 @@ class Snake {
         this.body.unshift({x: this.x, y: this.y})
         if (this.body.length > this.legthsnake){
             this.body.pop();
-            console.log(this.body);
         }
     }
     draw = function (canvas) {
         let c = canvas.getContext('2d');
+        c.drawImage()
         c.beginPath();
         for (let i = 0; i < this.body.length; i++){
             c.rect(this.body[i].x, this.body[i].y, this.sizex, this.sizey);
             c.stroke();
         }
+        c.closePath();
     }
 }
 
