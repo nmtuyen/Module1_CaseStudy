@@ -105,12 +105,12 @@
                 }
                 stones[i].draw(c);
             }
-            for (let i = 0; i < body.length; i++){
-                if (snake.x === snake.body[i].x && snake.y === snake.body[i].y){
-                    alert("Thua rồi, gà quá")
-                    window.location.href ='Index.html'
-                }
-            }
+            // for (let i = 0; i < body.length; i++){
+            //     if (snake.x === snake.body[i].x && snake.y === snake.body[i].y){
+            //         alert("Thua rồi, gà quá")
+            //         window.location.href ='Index.html'
+            //     }
+            // }
             food.draw_food(c);
             eatfood();
             snake.check();
