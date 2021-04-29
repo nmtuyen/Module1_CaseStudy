@@ -9,7 +9,7 @@
     <script src="config.js"></script>
 </head>
 <body onload="audio.play()">
-<audio id="audio" src="Am-thanh-Co-lam-moi-co-an-Huan-Hoa-Hong-www_nhacchuongvui_com.mp3" autoplay loop></audio>
+<audio id="audio" src="TanBenThuongHai-DiepLeNghi_699d.mp3" autoplay loop></audio>
 <center>
     Score:<input id="score"/><br/>
     <canvas id="mycanvas"  style="border: 1px solid; background-image: url('background.png')"></canvas>
@@ -104,6 +104,12 @@
                     window.location.href ='Index.html'
                 }
                 stones[i].draw(c);
+            }
+            for (let i = 0; i < body.length; i++){
+                if (snake.x === snake.body[i].x && snake.y === snake.body[i].y){
+                    alert("Thua rồi, gà quá")
+                    window.location.href ='Index.html'
+                }
             }
             food.draw_food(c);
             eatfood();
