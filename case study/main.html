@@ -6,34 +6,35 @@
     <script src="food.js"></script>
     <script src="snake.js"></script>
     <script src="stone.js"></script>
+    <script src="config.js"></script>
 </head>
-<body>
-Score:<input id="score"/><br/>
-<canvas id="mycanvas" width="250" height="300" style="border: 1px solid #05041a; background-image: url('background.png')"></canvas>
-<canvas id="score_player" width="100" height="300" style="border: 1px solid #05041a"></canvas>
-<img style="display: none" id="left" src="head_left.jpg" height="10" width="10"/>
-<img style="display: none" id="right" src="head_right.jpg" height="10" width="10"/>
-<img style="display: none" id="up" src="head_up.jpg" height="10" width="10"/>
-<img style="display: none" id="down" src="head_down .jpg" height="10" width="10"/>
-
+<body onload="audio.play()">
+<audio id="audio" src="Am-thanh-Co-lam-moi-co-an-Huan-Hoa-Hong-www_nhacchuongvui_com.mp3" autoplay loop></audio>
+<center>
+    Score:<input id="score"/><br/>
+    <canvas id="mycanvas"  style="border: 1px solid; background-image: url('background.png')"></canvas>
+</center>
 <script>
-    let snake = new Snake(50, 50, 'red', 10, 10);
+    let audio = document.getElementById('audio');
+    audio.play();
+    let c = document.getElementById('mycanvas');
+    c.width = CANVAS_WIDTH;
+    c.height = CANVAS_HEIGHT;
+    let pen = c.getContext('2d');
+    let snake = new Snake(START_SNAKE_X, START_SNAKE_Y);
     let food = new Food();
     let stone = new Stone();
-    let score = 0;
-    let c = document.getElementById('mycanvas');
+    let score = SCORE;
     food.draw_food(c);
     snake.draw(c);
     stone.draw(c);
     let stones = [stone];
-
     function createStone() {
         if(stones.length > 10)
             return;
         let stone = new Stone();
         stones.push(stone);
     }
-
     function moveSnake(evt) {
         switch (evt.keyCode) {
             case 37:
@@ -65,7 +66,6 @@ Score:<input id="score"/><br/>
     function caculator_score() {
         if (snake.x === food.x && snake.y === food.y){
             score +=1;
-
         }
         document.getElementById("score").value = score;
     }
@@ -91,42 +91,26 @@ Score:<input id="score"/><br/>
     }
     function clear() {
         let ctx = c.getContext('2d');
-        ctx.clearRect(0,0, 500, 600);
+        ctx.clearRect(0,0, CANVAS_WIDTH, CANVAS_HEIGHT);
     }
-    function endGame() {
-        let life = true;
-        for (i = 0; i < stones[i]; i++) {
-            if (snake.x === stones[i].x && snake.y === stones[i].y) {
-                return life = false;
-            }
-
-        }
-        if (life === false)
-            window.location.href = 'endGame.html'
-    }
-
         function runGame() {
-
             clear();
             caculator_score()
             snake.move();
             snake.draw(c);
             for (let i = 0; i < stones.length; i++) {
+                if (snake.x === stones[i].x && snake.y === stones[i].y){
+                    alert("Thua rồi, gà quá")
+                    window.location.href ='Index.html'
+                }
                 stones[i].draw(c);
             }
             food.draw_food(c);
             eatfood();
             snake.check();
             snake.update();
-            for (i = 0; i < stones.length; i++){
-                if (snake.x === stones[i].x && snake.y === stones[i].y)
-                    endGame();
-                console.log(snake.x,stones[i].x,snake.y, stones[i].y)
-            }
         }
-
-
-        setInterval(runGame, 150);
+        setInterval(runGame, SPEED_SETINTERVAL);
 
         window.addEventListener('keydown', moveSnake);
         window.addEventListener('keypress', moveSnake);

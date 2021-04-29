@@ -16,7 +16,7 @@
     <CENTER><h1 style="position: center">GAME RẮN SĂN MỒI</h1></CENTER>
     <center>
         <p>Nhập tên người chơi</p>
-        <input type="text"/>
+        <input id="player" type="text" value="user1"/>
         <p>Hướng dẫn</p>
         <p>Ấn phím "↑","↓","←","→" để rắn đi lên, xuống, trái, phải</p>
         <p>Điều khiển rắn ăn quả để cộng điểm</p>
@@ -25,7 +25,10 @@
         <button id="but" disabled onclick="game()" style="position: center">Start game</button>
     </center>
     <script>
+        let list_player = [];
         function game() {
+            let player = document.getElementById('player').value;
+            list_player.push(player);
             window.location.href = "main.html";
         }
         function checkop() {

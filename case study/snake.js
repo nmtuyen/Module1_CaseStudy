@@ -1,50 +1,48 @@
 class Snake {
-    constructor(x, y, color, speedx, speedy) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sizex = 10;
-        this.sizey = 10;
-        this.color = color;
+        this.sizex = SIZE_X;
+        this.sizey = SIZE_Y;
         this.start = 'right';
-        this.speedx = speedx;
-        this.speedy = speedy;
+        this.speed = SPEED_SNAKE;
         this.body = [];
         this.legthsnake = 3;
         this.image = new Image();
-        this.img = ['head_down','head_up','head_left','head_right'];
-        this.image.src = this.img[3] + '.jpg'
+        this.img = ["head_up", "head_down", "head_rigth", "head_left"];
+        // this.image.src = this.img[0] + '.jpg';
 
     }
 
     move = function () {
         switch (this.start) {
             case 'left' :
-                this.image.src = this.img[2] + '.jpg'
-                this.x -= this.speedx;
+                this.image.src = this.img[3] + '.png'
+                this.x -= this.speed;
                 break;
             case 'right':
-                this.image.src = this.img[3] + '.jpg'
-                this.x += this.speedx;
+                this.image.src = this.img[2] + '.png'
+                this.x += this.speed;
                 break;
             case 'up':
-                this.image.src = this.img[1] + '.jpg'
-                this.y -= this.speedy;
+                this.image.src = this.img[0] + '.png'
+                this.y -= this.speed;
                 break;
             case 'down':
-                this.image.src = this.img[0] + '.jpg'
-                this.y += this.speedy;
+                this.image.src = this.img[1] + '.png'
+                this.y += this.speed;
                 break;
         }
     }
     check = function () {
-        if (snake.x > 250)
+        if (snake.x > CANVAS_WIDTH)
             snake.x = 0;
         if (snake.x < 0)
-            snake.x = 250
-        if (snake.y > 300)
+            snake.x = CANVAS_WIDTH
+        if (snake.y > CANVAS_HEIGHT)
             snake.y = 0;
         if (snake.y < 0)
-            snake.y = 300
+            snake.y = CANVAS_HEIGHT
 
 
     }
@@ -56,10 +54,11 @@ class Snake {
     }
     draw = function (canvas) {
         let c = canvas.getContext('2d');
-        c.drawImage()
+        this.image.src = this.img[0] + ".png";
         c.beginPath();
         for (let i = 0; i < this.body.length; i++){
-            c.rect(this.body[i].x, this.body[i].y, this.sizex, this.sizey);
+            // c.rect(this.body[i].x, this.body[i].y, this.sizex, this.sizey);
+            c.drawImage(this.image, this.body[i].x, this.body[i].y, this.sizex, this.sizey);
             c.stroke();
         }
         c.closePath();

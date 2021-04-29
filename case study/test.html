@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="snakeHead.js"></script>
+</head>
+<body>
+
+    <canvas id="mycanvas" width="250" height="300" style="border: 1px solid #05041a; background-image: url('background.png')"></canvas>
+
+<script>
+    let canvas=document.getElementById('mycanvas');
+    let pen=canvas.getContext('2d');
+    let head=new Headsnake(canvas,'head_left.jpg',30,30);
+    head.drawImg();
+</script>
+</body>
+</html>
