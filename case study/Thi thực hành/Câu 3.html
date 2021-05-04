@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function count_str(a) {
+        let count = 0;
+        let arr = a.split(" ")
+        let b = ['a','o','e','u','i']
+        for (i = 0; i < arr.length; i++){
+            for (j = 0; j < b.length; j++){
+                if (arr[i] === b[j]){
+                    count++
+                }
+                if (count === 0){
+                    return false;
+                }return count;
+            }
+        }
+        }
+    count_str(prompt("Nhập chuỗi kí tự cần kiểm tra có chứa dấu cách"))
+</script>
+</body>
+</html>
