@@ -17,7 +17,7 @@ class Animal {
     }
     toString = function () {
         let str = "Name animal is "+ this.name+","+ "Weight animal is "+ this.weight;
-        document.write(str)
+        document.write(str);
         
     }
 }
