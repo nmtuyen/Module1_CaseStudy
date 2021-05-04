@@ -2,128 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main_game</title>
-
+    <title>Title</title>
+    <script src="test.js"></script>
 </head>
 <body>
-<canvas id="mycanvas" width="500" height="600" style="border: 1px solid #05041a"></canvas>
+<!--    <script>-->
+<!--        display(1000)-->
+<!--    </script>-->
 <script>
-    class Snake {
-        constructor(x, y, color, speedx, speedy) {
-            this.x = x;
-            this.y = y;
-            this.sizex = 10;
-            this.sizey = 10;
-            this.color = color;
-            this.start = 'right';
-            this.speedx = speedx;
-            this.speedy = speedy;
-            this.body = [];
-            this.legthsnake = 10;
-        }
-        eatfood = function () {
-            if (this.snake.x === this.food.x && this.snake.y === this.food.y){
-                this.legthsnake ++;
-                return true;
-            }return false;
-        }
-        move = function () {
-            switch (this.start) {
-                case 'left' :
-                    this.x -= this.speedx;
-                    break;
-                case 'right':
-                    this.x += this.speedx;
-                    break;
-                case 'up':
-                    this.y -= this.speedy;
-                    break;
-                case 'down':
-                    this.y += this.speedy;
-                    break;
-            }
-        }
-        update = function () {
-            this.body.unshift({x: this.x, y: this.y})
-            if (this.body.length > this.legthsnake){
-                this.body.pop();
-            }
-        }
-        draw = function (canvas) {
-            let c = canvas.getContext('2d');
-            c.beginPath();
-            for (let i = 0; i < this.body.length; i++){
-                c.rect(this.body[i].x, this.body[i].y, this.sizex, this.sizey);
-                c.stroke();
-            }
-        }
-    }
-    class Food {
-        constructor() {
-            this.x = 10 * Math.floor(Math.random() * 50)
-            this.y = 10 * Math.floor(Math.random() * 60)
-            this.size = 10;
-        }
-        draw_food = function (canvas) {
-            let d = canvas.getContext('2d');
-            d.beginPath();
-            d.rect(this.x, this.y, this.size, this.size);
-            d.stroke();
-        }
-        change_pos = function () {
-
-        }
-    }
-    let snake = new Snake(50, 50, 'red', 10, 10);
-    let food = new Food();
-    let c = document.getElementById('mycanvas')
-    food.draw_food(c);
-    snake.draw(c);
-    function moveSnake(evt) {
-        switch (evt.keyCode) {
-            case 37:
-                // alert('trái')
-                if (snake.start === 'right')
-                    break;
-                snake.start = 'left';
-                break;
-            case 39:
-                // alert("phải")
-                if (snake.start === 'left')
-                    break;
-                snake.start = 'right';
-                break;
-            case 38:
-                // alert("lên")
-                if (snake.start === 'down')
-                    break;
-                snake.start = 'up';
-                break;
-            case 40:
-                // alert("xuống")
-                if (snake.start === 'up')
-                    break;
-                snake.start = 'down';
-                break;
-        }
-    }
-    function clear() {
-        let ctx = c.getContext('2d');
-        ctx.clearRect(0,0,c.width, c.height);
-    }
-    function runGame() {
-        clear();
-        snake.move();
-        snake.eatfood();
-        snake.draw(c);
-        food.draw_food(c);
-        snake.update();
-    }
-    setInterval(runGame,300);
-    window.addEventListener('keydown',moveSnake)
-    window.addEventListener('keypress',moveSnake)
-    window.addEventListener('keyup',moveSnake)
+    document.write(tinh_tong());
 </script>
-
 </body>
 </html>

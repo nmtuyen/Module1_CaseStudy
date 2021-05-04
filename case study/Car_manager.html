@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../Car_manager.js"></script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>STT</td>
+        <td>Hãng xe</td>
+        <td>Tên xe</td>
+        <td>Loại xe</td>
+        <td>Giá tiền</td>
+        <td>Số lượng</td>
+    </tr>
+</table>
+<button onclick="add_car()">Add car</button>
+<script>
+    class Car_manager {
+        constructor(hang_xe, ten_xe, loai_xe, gia_tien, so_luong) {
+            this.hang_xe = hang_xe;
+            this.ten_xe = ten_xe;
+            this.loai_xe = loai_xe;
+            this.gia_tien = gia_tien;
+            this.so_luong = so_luong;
+        }
+    }
+        let car1 = new Car_manager('honda', 'city', 'suv',20000, 10  );
+        let car2 = new Car_manager('toyota', 'camry', 'suv', 30000, 15 );
+        let array_car = [car1, car2];
+
+
+        function add_car() {
+            let hang_xe = prompt("Nhập hãng xe");
+            let ten_xe = prompt("Nhập tên xe");
+            let loai_xe = prompt("Nhập loại xe");
+            let gia_tien = prompt("nhập giá tiền");
+            let so_luong = prompt("nhập số lượng");
+            let car = new Car_manager(hang_xe, ten_xe, loai_xe, gia_tien, so_luong);
+            array_car.push(car)
+            display();
+        }
+        function display() {
+            let str = '';
+            for (let i = 0; i < array_car.length; i++){
+                str += '<tr>';
+                str += '<td>'+ array_car[i].hang_xe +'</td>';
+                str += '<td>'+ array_car[i].ten_xe +'</td>';
+                str += '<td>'+ array_car[i].loai_xe +'</td>';
+                str += '<td>'+ array_car[i].gia_tien +'</td>';
+                str += '<td>'+ array_car[i].so_luong +'</td>';
+                str += '<td>'+ '<button onclick="show_editcell('+i+')">Edit</button>' + '</td>';
+                str += '<td>'+ '<button onclick="deletekhachhang('+i+')">Delete</button>' + '</td>';
+                str += '</tr>';
+            }
+            display();
+        }
+
+</script>
+</body>
+</html>
